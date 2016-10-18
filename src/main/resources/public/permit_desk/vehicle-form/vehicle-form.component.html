@@ -1,0 +1,203 @@
+<form *ngIf="active" [formGroup]="vehicleForm" (ngSubmit)="onSubmit(vehicleForm.value)" novalidate>
+    <page-title title="Vehicle Accreditation Application"></page-title>
+    <p-tabView>
+        <p-tabPanel header="Vehicle Information">
+          <div class="row">
+             <div class="col-xs-4">
+               <label for="applicationId">Application No</label>
+               <input type="text" class="form-control" id="applicationId" formControlName="applicationId">
+             </div>
+             <div class="col-xs-8">
+                  <validation-messages [control]="vehicleForm.controls.applicationId" ></validation-messages>
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-xs-4">
+                <label for="vehicleType">Vehicle Type</label>
+                <select name="vehicleType" type="number" id="vehicleType" class="form-control" formControlName="vehicleType">
+                  <option *ngFor="let vehicleType of vehicleTypes" value="{{vehicleType.key}}" > {{ vehicleType.value }}</option>
+                </select>
+             </div>
+             <div class="col-xs-8">
+                  <validation-messages [control]="vehicleForm.controls.vehicleType" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-xs-2">
+               <label for="plate">Plate #</label>
+               <input type="text" class="form-control" id="plate" formControlName="plate">
+             </div>
+             <div class="col-xs-2">
+               <label for="state">State</label>
+               <select name="state" type="text" id="state" class="form-control" formControlName="plateState">
+                  <option *ngFor="let state of states" value="{{state.key}}" > {{ state.value }}</option>
+                </select>
+             </div>
+             <div class="col-xs-8">
+                  <validation-messages [control]="vehicleForm.controls.plate" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-xs-4">
+               <label for="engineNo">Engine #</label>
+               <input type="text" class="form-control" id="engineNo" formControlName="engineNo">
+             </div>
+             <div class="col-xs-8">
+                  <validation-messages [control]="vehicleForm.controls.engineNo" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-xs-4">
+               <label for="chassisNo">Chassis #</label>
+               <input type="text" class="form-control" id="chassisNo" formControlName="chassisNo">
+             </div>
+             <div class="col-xs-8">
+                  <validation-messages [control]="vehicleForm.controls.chassisNo" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-xs-4">
+                 <label for="vin">VIN</label>
+                 <input type="text" class="form-control" id="vin" formControlName="vin">
+             </div>
+             <div class="col-xs-8">
+                 <validation-messages [control]="vehicleForm.controls.vin" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-xs-4">
+               <label for="manufacturer">Manufacturer</label>
+               <select name="manufacturer" type="text" id="manufacturer" class="form-control" formControlName="manufacturer">
+                  <option *ngFor="let manufacturer of manufacturers" value="{{manufacturer.key}}" > {{ manufacturer.value }}</option>
+               </select>
+             </div>
+             <div class="col-xs-8">
+                  <validation-messages [control]="vehicleForm.controls.manufacturer"></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-xs-4">
+               <label for="Model">Model</label>
+               <input type="text" class="form-control" id="model" formControlName="model">
+             </div>
+             <div class="col-xs-8">
+                  <validation-messages [control]="vehicleForm.controls.model" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-xs-2">
+               <label for="noOfAxles"># of Axles</label>
+               <input type="number" class="form-control" id="noOfAxles" formControlName="noOfAxles" (change)="onChangeAxles()">
+             </div> 
+             <div class="col-xs-10">
+                  <validation-messages [control]="vehicleForm.controls.noOfAxles" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-sm-2 col-md-2-offset">
+               <label for="tare">Tare</label>
+               <input type="number" class="form-control" id="tare" formControlName="tare">
+             </div> 
+             <div class="col-sm-2 col-md-2-offset">
+               <label for="gcm">GCM</label>
+               <input type="number" class="form-control" id="gcm" formControlName="gcm">
+             </div> 
+             <div class="col-sm-2 col-md-2-offset">
+               <label for="gvm">GVM</label>
+               <input type="text" class="form-control" id="gvm" formControlName="gvm">
+             </div>
+             <div class="col-xs-10">
+<!-- Group these -->
+                  <validation-messages [control]="vehicleForm.controls.gvm" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-xs-4">
+               <label for="source">Information Source</label>
+                <select name="source" type="number" id="source" class="form-control" formControlName="sourceOfInformation">
+	               <option *ngFor="let source of sources" value="{{source.key}}"> {{ source.value }}</option>
+                </select>
+             </div>
+             <div class="col-xs-8">
+                  <validation-messages [control]="vehicleForm.controls.sourceOfInformation" ></validation-messages>
+             </div>
+          </div>
+	</p-tabPanel>
+ 
+
+        <p-tabPanel header="Dimension and Mass">
+
+
+            <div>
+              <dimension-component [dimensionGroup]="vehicleForm.controls.dimension"></dimension-component>
+            </div>
+
+<!--
+	    <div formArrayName="axles">
+                <div *ngFor="let axle of vehicleForm.controls.axles.controls; let i=index">
+         	    <div [formGroupName]="i">
+                       <div class="row">
+	                  <axle-component [axlegroup]="vehicleForm.controls.axles.controls[i]"></axle-component>
+                       </div>
+	            </div>
+                </div>
+            </div>
+
+this.vehicleForm.controls['axles']
+
+vehicleForm.controls.axles.controls
+-->
+           <div class="col-md-12">
+		<p-dataTable [value]="vehicleForm.controls.axles.controls" [editable]="true">
+   		    <p-column field="axleNo" header="#"  [editable]="true"></p-column>
+		    <p-column field="groundContactWidth" header="G.C.W." [editable]="true"></p-column>
+		    <p-column field="groundContactLength" header="G.C.L." [editable]="true"></p-column>
+		    <p-column field="noOfTyres" header="# Tyres" [editable]="true"></p-column>
+		    <p-column field="tyreWidth" header="Tyre Width" [editable]="true"></p-column>
+		    <p-column field="mass" header="Mass" [editable]="true"></p-column>
+		</p-dataTable>
+           </div>
+
+            <div class="margin-20">
+              <a (click)="addAxle()" style="cursor: default">Add another axle +</a>
+            </div>
+        </p-tabPanel>
+
+	<p-tabPanel header="Notes">
+            <h4>Please enter any extra information below</h4>
+            <textarea type="textarea" rows="10" cols="100" id="notes" formControlName="notes"></textarea>
+	</p-tabPanel>
+
+	<p-tabPanel header="Attachments">
+	    <p-growl [value]="msgs"></p-growl>
+	    <p-fileUpload name="attachments[]" url="http://localhost:3000/upload" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*" maxFileSize="1000000">
+		  <template pTemplate type="content">
+		    <ul *ngIf="attachments.length">
+	               <li *ngFor="let file of attachments">{{file.name}} - {{file.size}} bytes</li>
+	           </ul>
+		  </template>        
+	    </p-fileUpload>
+	</p-tabPanel>
+
+      </p-tabView>
+
+<!--- ACTIONS -->
+      <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+           <button type="submit" class="btn btn-primary" [disabled]="!vehicleForm.valid">Submit</button>
+           <button type="button" class="btn btn-primary" (click)="goBack()">Back</button>
+        </div>
+      </div>
+</form>
+
+

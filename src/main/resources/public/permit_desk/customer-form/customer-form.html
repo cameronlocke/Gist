@@ -1,0 +1,463 @@
+<div class="container-fluid">
+    <h1>Overload - Permit Management</h1>  <!--- Page Title -->
+    <form *ngIf="active" novalidate>
+    <p-tabView>
+	<p-tabPanel header="Application">
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="status">Status</label>
+                <select name="status" type="number" id="status" class="form-control" formControlName="status">
+                  <option *ngFor="let status of statuses" value="{{status.key}}" > {{ status.value }}</option>
+                </select>
+             </div>
+             <div class="col-md-8">
+                  <validation-messages [control]="searchForm.controls.status" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="applicationType">Application Type</label>
+                <select name="applicationType" type="number" id="applicationType" class="form-control" formControlName="applicationType">
+                  <option *ngFor="let applicationType of applicationTypes" value="{{applicationType.key}}" > {{ applicationType.value }}</option>
+                </select>
+             </div>
+             <div class="col-md-8">
+                  <validation-messages [control]="searchForm.controls.applicationType" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="permitNo">ATO #</label>
+               <input type="text" class="form-control" id="permitNo" formControlName="permitNo">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.permitNo" ></validation-messages>
+             </div>
+          </div>
+
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="submittedFrom">Submitted From</label>
+               <input type="date" class="form-control" id="submittedFrom" formControlName="submittedFrom">
+             </div>
+             <div class="col-md-4">
+                <label for="submittedTo">To</label>
+               <input type="date" class="form-control" id="submittedTo" formControlName="submittedTo">
+             </div>
+             <div class="col-md-8">
+                  <validation-messages [control]="searchForm.controls.submitted" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="lastActionFrom">Submitted From</label>
+               <input type="date" class="form-control" id="lastActionFrom" formControlName="lastActionFrom">
+             </div>
+             <div class="col-md-4">
+                <label for="lastActionTo">To</label>
+               <input type="date" class="form-control" id="lastActionTo" formControlName="lastActionTo">
+             </div>
+             <div class="col-md-8">
+                  <validation-messages [control]="searchForm.controls.lastAction" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="decisionFrom">Submitted From</label>
+               <input type="date" class="form-control" id="decisionFrom" formControlName="decisionFrom">
+             </div>
+             <div class="col-md-4">
+                <label for="lastActionTo">To</label>
+               <input type="date" class="form-control" id="decisionTo" formControlName="decisionTo">
+             </div>
+             <div class="col-md-8">
+                  <validation-messages [control]="searchForm.controls.decision" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="authorisedFrom">Submitted From</label>
+               <input type="date" class="form-control" id="authorisedFrom" formControlName="authorisedFrom">
+             </div>
+             <div class="col-md-4">
+                <label for="authorisedTo">To</label>
+               <input type="date" class="form-control" id="authorisedTo" formControlName="authorisedTo">
+             </div>
+             <div class="col-md-8">
+                  <validation-messages [control]="searchForm.controls.authorised" ></validation-messages>
+             </div>
+          </div>
+
+	</p-tabPanel>
+
+
+	<!-- Vehicle -->
+       	<p-tabPanel header="Vehicle">
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="vehicleType">Vehicle Type</label>
+                <select name="vehicleType" type="number" id="vehicleType" class="form-control" formControlName="vehicleType">
+                  <option *ngFor="let vehicleType of vehicleTypes" value="{{vehicleType.key}}" > {{ vehicleType.value }}</option>
+                </select>
+             </div>
+             <div class="col-md-8">
+                  <validation-messages [control]="searchForm.controls.vehicleType" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-4">
+               <label for="plateNo">Plate #</label>
+               <input type="text" class="form-control" id="plateNo" formControlName="plateNo">
+             </div>
+             <div class="col-md-2">
+                <label for="plateState">State</label>
+                <select name="plateState" type="number" id=plateState class="form-control" formControlName="plateState">
+                  <option *ngFor="let state of states" value="{{state.key}}" > {{ state.value }}</option>
+                </select>
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.plate" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="vin">VIN</label>
+               <input type="text" class="form-control" id="vin" formControlName="vin">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.vin" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="engineNo">Engine #</label>
+               <input type="text" class="form-control" id="engineNo" formControlName="engineNo">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.engineNo" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="chassisNo">Chassis #</label>
+               <input type="text" class="form-control" id="chassisNo" formControlName="chassisNo">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.chassisNo" ></validation-messages>
+             </div>
+          </div>
+
+<!-- this could well be a auto-complete -->
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="vehiclePermitNo">ATO #</label>
+               <input type="text" class="form-control" id="vehiclePermitNo" formControlName="vehiclePermitNo">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.vehiclePermitNo" ></validation-messages>
+             </div>
+          </div>
+
+	</p-tablPanel>
+
+	<!-- Customer - only useful to PMO -->
+
+        <p-tabPanel header="Customer">
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="customerName">Customer Name</label>
+               <input type="text" class="form-control" id="customerName" formControlName="customerName">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.customerName" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="customerPermitNo">AHHO #</label>
+               <input type="text" class="form-control" id="customerPermitNo" formControlName="customerPermitNo">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.customerPermitNo" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="customerABN">ABN</label>
+               <input type="text" class="form-control" id="customerABN" formControlName="customerABN">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.customerABN" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="customerACN">ACN</label>
+               <input type="text" class="form-control" id="customerACN" formControlName="customerACN">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.customerACN" ></validation-messages>
+             </div>
+          </div>
+
+        </p-tabPanel>
+
+          <p></p>
+          <div>
+              <contact-component [group]="selfRegistrationForm.controls.businessIdentity.controls.contact"></contact-component> 
+          </div>
+
+          <div class="row">
+             <div class="col-md-8">
+               <label for="afterHoursPhone">After Hours</label>
+               <input type="text" class="form-control" id="afterHoursPhone"  [formControl]="selfRegistrationForm.controls.businessIdentity.controls.afterHoursPhone" >
+             </div>
+             <div class="col-md-4">
+                  <validation-messages [control]="selfRegistrationForm.controls.businessIdentity.controls.afterHoursPhone" ></validation-messages>
+             </div>
+          </div>
+       </p-tabPanel>
+  
+<!-- Business Address -->
+
+        <p-tabPanel header="Business Address">
+           <address-component [group]="selfRegistrationForm.controls.businessAddress"></address-component>
+        </p-tabPanel>
+
+<!-- Postal Address -->
+
+        <p-tabPanel header="Postal Address">
+             <p><label>Same As Business Address :</label><p-checkbox binary="true" [formControl]="selfRegistrationForm.controls.sameAsBusinessAddress"></p-checkbox></p>
+           <div [hidden]="selfRegistrationForm.controls.sameAsBusinessAddress.value" >
+              <address-component [group]="selfRegistrationForm.controls.postalAddress"></address-component>
+           </div>
+       </p-tabPanel>
+ 
+<!-- Proprietor / Delegate -->
+
+
+       <p-tabPanel header="Proprietor/Delegate">
+             <contact-component [group]="selfRegistrationForm.controls.delegate.controls.contact"></contact-component>
+             <div class="row">
+               <div class="col-md-4">
+                  <label for="dateOfBirth">Date of Birth</label>
+                  <input type="date" class="form-control" id="dateOfBirth"  [formControl]="selfRegistrationForm.controls.delegate.controls.dateOfBirth">
+               </div>
+               <div class="col-md-8">
+                  <validation-messages [control]="selfRegistrationForm.controls.delegate.controls.dateOfBirth" ></validation-messages>
+               </div>
+             </div>
+             <div class="row">
+               <div class="col-md-6">
+                 <label for="licenceNumber">Licence #</label>
+                 <input type="text" class="form-control" id="licenceNumber" [formControl]="selfRegistrationForm.controls.delegate.controls.licenceNumber">
+               </div>
+               <div class="col-md-6">
+                    <validation-messages [control]="selfRegistrationForm.controls.delegate.controls.licenceNumber" ></validation-messages>
+               </div>
+             </div>
+       </p-tabPanel>
+
+<!-- Adminstrator page -->
+
+       <p-tabPanel header="Administrator">
+          <!-- Still undecided if we have a username or just use the unique email address or both (which seems to be the norm these days) -->
+             <user-component [group]="selfRegistrationForm.controls.administrator.controls.user"></user-component>
+             <div class="row">
+                <div class="col-md-8">
+                  <label for="dateOfBirth">Date of Birth</label>
+                  <input type="date" class="form-control" id="dateOfBirth" [formControl]="selfRegistrationForm.controls.administrator.controls.dateOfBirth">
+                </div>
+                <div class="col-md-4">
+                  <validation-messages [control]="selfRegistrationForm.controls.administrator.controls.dateOfBirth" ></validation-messages>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-8">
+                  <label for="licenceNumber">Licence #</label>
+                  <input type="text" class="form-control" id="licenceNumber" [formControl]="selfRegistrationForm.controls.administrator.controls.licenceNumber">
+                </div>
+                <div class="col-md-4">
+                    <validation-messages [control]="selfRegistrationForm.controls.administrator.controls.licenceNumber" ></validation-messages>
+                </div>
+             </div>
+       </p-tabPanel>
+
+<!-- NOTES -->
+
+	<p-tabPanel header="Notes">
+            <h4>Please enter any extra information below</h4>
+
+<!-- TODO : Learn how to align, fill spaces/elements etc. -->
+            <textarea type="textarea" rows="10" cols="100" id="notes" [formControl]="selfRegistrationForm.controls.notes"></textarea>
+	</p-tabPanel>
+
+
+<!-- Attachments : -->
+<!-- TODO: Might need to be a component -->
+
+	<p-tabPanel header="Attachments">
+
+		<p-growl [value]="msgs"></p-growl>
+    
+		<p-fileUpload name="demo[]" url="http://localhost:3000/upload" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*" maxFileSize="1000000">
+		    <template pTemplate type="content">
+		        <ul *ngIf="uploadedFiles.length">
+		            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+		        </ul>
+		    </template>        
+		</p-fileUpload>
+
+	</p-tabPanel>
+
+<!-- REVIEW page -->
+
+        <p-tabPanel header="Review">
+            <p-panel header="Information Summary">
+            <div class="row">
+               <div class="col-md-2"></div>
+               <div class="col-md-4">Business Identity</div>
+               <div class="col-md-2">
+                   <div [hidden]="!selfRegistrationForm.controls.businessIdentity.valid">
+                       <button type="button" class="btn btn-sm btn-success">
+                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                       </button>
+                   </div>
+                   <div [hidden]="selfRegistrationForm.controls.businessIdentity.valid">
+                        <button type="button" class="btn btn-sm btn-danger">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button> 
+                   </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-2"></div>
+               <div class="col-md-4">Business Address</div>
+               <div class="col-md-2">
+                    <div [hidden]="!selfRegistrationForm.controls.businessAddress.valid">
+                        <button type="button" class="btn btn-sm btn-success">
+                          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div [hidden]="selfRegistrationForm.controls.businessAddress.valid">
+                        <button type="button" class="btn btn-sm btn-danger">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button> 
+                    </div>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-md-2"></div>
+               <div class="col-md-4">Postal Address </div>
+               <div class="col-md-2">
+                    <div [hidden]="!selfRegistrationForm.controls.postalAddress.valid">
+                        <button type="button" class="btn btn-sm btn-success">
+                          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div [hidden]="selfRegistrationForm.controls.postalAddress.valid">
+                        <button type="button" class="btn btn-sm btn-danger">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button> 
+                    </div>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-md-2"></div>
+               <div class="col-md-4">Proprietor / Delegate</div>
+               <div class="col-md-2">
+                    <div [hidden]="!selfRegistrationForm.controls.delegate.valid">
+                        <button type="button" class="btn btn-sm btn-success">
+                          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div [hidden]="selfRegistrationForm.controls.delegate.valid">
+                        <button type="button" class="btn btn-sm btn-danger">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button> 
+                    </div>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-md-2"></div>
+               <div class="col-md-4">Administrator</div>
+               <div class="col-md-2">
+                    <div [hidden]="!selfRegistrationForm.controls.administrator.valid">
+                        <button type="button" class="btn btn-sm btn-success">
+                           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div [hidden]="selfRegistrationForm.controls.administrator.valid">
+                        <button type="button" class="btn btn-sm btn-danger">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button> 
+                    </div>
+               </div>
+            </div>
+            </p-panel>
+
+            <div class="row">
+               <div class="col-md-12"></div>
+            </div>
+
+            <p-panel header="Terms and Conditions">
+               <div class="row">
+                  <div class="col-md-12">                     <p>By using our website you agree to be legally bound by these terms, which shall take effect immediately on your first use of our website. If you do not agree to be legally bound by all the following terms you will not be provided with access to the "Overload - Heavy Vehicle Permit Management" web-site.</p>
+                     <p></p>
+                     <p>For a full disclosure of our terms and conditions please refer to the Department of Transport and Main roads web-site (<a href="http://www.tmr.qld.gov.au/termsandconditions" target="_blank">here</a>)</p>
+                        <p><p-checkbox binary="true" [formControl]="selfRegistrationForm.controls.termsAndConditions"></p-checkbox><label>I agree</label></p>
+                  </div>
+               </div>
+            </p-panel>
+ 
+	</p-tabPanel>
+
+    </p-tabView>
+
+
+<!--- ACTIONS -->
+
+       <div>
+          <page-actions [formGroup]="selfRegistrationForm"></page-actions>
+       </div>
+
+    </form>
+  </div>
+
+  <div  [hidden]="!submitted"> 
+      <div class="centre" width="50%">
+        <h1>AHHO Registration</h1>
+        <p>You're application #{{application_no}} has been accepted and will be processed in a timely manner. 
+Should you require further information regarding this application please contact the Department of Transport
+ and Mains Road. </p>
+
+        <h2>Contact Information</h2>
+        <p>Phone : (XX) XXXX XXXX</p>
+        <p>EMail : hvropo@tmr.qld.gov.au </p>
+
+        <p>To assist us with your inquiry please quote the following application reference # </p> {{application_no}}
+     </div>
+  </div> 
+<div>
+
+

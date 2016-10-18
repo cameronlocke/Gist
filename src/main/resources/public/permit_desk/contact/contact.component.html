@@ -1,0 +1,48 @@
+     <div [formGroup]="contactGroup">
+          <div class="row">
+             <div class="col-md-8">
+               <label for="firstName">First Name</label>
+               <input type="text" class="form-control" id="firstName" formControlName="firstName">
+             </div>
+             <div class="col-md-4">
+                 <validation-messages [control]="contactGroup.controls.firstName" ></validation-messages>
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-md-8">
+               <label for="middleName">Middle Name</label>
+               <input type="text" class="form-control" id="middleName"  formControlName="middleName">
+             </div>
+             <div class="col-md-4">
+ -                  <validation-messages [control]="contactGroup.controls.middleName" ></validation-messages>
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-md-8">
+               <label for="lastName">Last Name</label>
+               <input type="text" class="form-control" id="lastName" formControlName="lastName" >
+             </div>
+             <div class="col-md-4">
+                   <validation-messages [control]="contactGroup.controls.lastName" ></validation-messages>
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-md-6">
+               <label for="phone">Phone </label>
+               <input type="text" class="form-control" id="phone" formControlName="phone">
+             </div>
+             <div class="col-md-6">
+                   <validation-messages [control]="contactGroup.controls.phone" ></validation-messages>
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-md-4">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" formControlName="email" >
+             </div>
+             <div class="col-md-8">
+                   <validation-messages [control]="contactGroup.controls.email" ></validation-messages>
+             </div>
+          </div> 
+     </div>
+

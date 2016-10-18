@@ -1,0 +1,61 @@
+   <div [formGroup]="addressGroup">  
+          <div class="row">
+             <div class="col-md-8">
+<!-- TODO Hoop-up with service addressLookup service. -->
+               <label for="addressSearch">Address Search</label>
+               <input type="text" class="form-control" id="addressSearch"  formControlName="addressSearch">
+             </div>
+             <div class="col-md-4">
+                  <validation-messages [control]="addressGroup.controls.addressSearch" ></validation-messages> 
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-8">
+               <label for="addressLine1">Address</label>
+               <input type="text" class="form-control" id="addressLine1" formControlName="addressLine1">
+             </div>
+             <div class="col-md-4">
+                 <validation-messages [control]="addressGroup.controls.addressLine1" ></validation-messages> 
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-md-8">
+               <label for="addressLine2">Address (cont)</label>
+               <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2" >
+             </div>
+             <div class="col-md-4">
+-                  <validation-messages [control]="addressGroup.controls.addressLine2" ></validation-messages> 
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-md-6">
+               <label for="addressSuburb">Suburb/town</label>
+               <input type="text" class="form-control" id="addressSuburb" formControlName="addressSuburb">
+             </div>
+             <div class="col-md-6">
+-                  <validation-messages [control]="addressGroup.controls.addressSuburb" ></validation-messages> 
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-md-2">
+                <label for="addressState">State</label>
+                <select name="addressState" type="number" id=addressState class="form-control" formControlName="addressState">
+                  <option *ngFor="let state of states" value="{{state.key}}" > {{ state.value }}</option>
+                </select>
+             </div>
+             <div class="col-md-10">
+                  <validation-messages [control]="addressGroup.controls.addressState" ></validation-messages>
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-md-2">
+                <label for="addressPostcode">Postcode</label>
+                <input type="text" class="form-control" id="addressPostcode" formControlName = "addressPostcode" >
+             </div>
+             <div class="col-md-10">
+                  <validation-messages [control]="addressGroup.controls.addressPostcode"></validation-messages>
+             </div>
+          </div> 
+     </div>
+

@@ -1,0 +1,36 @@
+<div [formGroup]="vehicleCombination">
+<h3>Vehicle Builder</h3>
+<div class="ui-grid ui-grid-pad ui-grid-responsive">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-6 ui-widget-content" style="border-right:0 none">
+            <ul style="margin:0;padding:0">
+                <li *ngFor="let vehicle of vehicles" class="ui-state-default ui-helper-clearfix" pDraggable="vehicles"
+                    (onDragStart)="dragStart($event,vehicle)" (onDragEnd)="dragEnd($event)">
+                    <i class="fa fa-arrows fa-2x" style="float:right;margin-top:8px"></i>
+<!--                    <img src="images/vehicle/{{vehicle.manufacturer}}.gif" style="float:left" draggable="false"> -->
+                    <div style="margin:8px 0 0 8px;float:left">{{car.plateNo}} - {{car.year}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="ui-grid-col-6 ui-widget-content" pDroppable="vehicles" (onDrop)="drop($event)"
+                [ngClass]="{'ui-state-highlight':draggedCar}">
+            <p-dataTable [value]="selectedCars">
+                <p-column field="plate" header="Plate#"></p-column>
+                <p-column field="state" header="State"></p-column>
+                <p-column field="vin" header="Vin"></p-column>
+                <p-column field="engine" header="Engine#"></p-column>
+                <p-column field="chassis" header="Chassis#"></p-column>
+<!---                <p-column field="year" header="Year"></p-column>
+                <p-column field="brand" header="Brand"></p-column>
+                <p-column field="color" header="Color"></p-column> -->
+            </p-dataTable>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</div>
+

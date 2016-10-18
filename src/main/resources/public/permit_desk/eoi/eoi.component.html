@@ -1,0 +1,21 @@
+   <div [formGroup]="eoiGroup">  
+            <div class="row">
+               <div class="col-md-4">
+                  <label for="dateOfBirth">Date of Birth</label>
+                  <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth">
+               </div>
+               <div class="col-md-8">
+                  <validation-messages [control]="eoiGroup.controls.dateOfBirth" ></validation-messages>
+               </div>
+             </div>
+             <div class="row">
+               <div class="col-md-6">
+                 <label for="licenceNumber">Licence #</label>
+                 <input type="text" class="form-control" id="licenceNumber" formControlName="licenceNumber">
+               </div>
+               <div class="col-md-6">
+                    <validation-messages [control]="eoiGroup.controls.licenceNumber" ></validation-messages>
+               </div>
+             </div>
+     </div>
+

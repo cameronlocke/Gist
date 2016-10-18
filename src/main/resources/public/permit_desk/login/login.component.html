@@ -1,0 +1,55 @@
+<div [formGroup]="loginForm">
+
+     <strong>
+     <h1 class="color:navy text-center">Overload</h1>
+     </strong>
+     <h2 class="color:navy text-center">Road Access Management for Heavy Vehicles</h2>
+
+     <div class="col-md-4 col-md-2-offset">
+        <a href="/signup">
+          <img src="resources/img/signup.jpg" alt="Sign-up today" style="float:right;width:150px;height:150px;padding:10px 10px 10px 10px">
+        </a>
+     </div>
+     <div class="row">
+        <div class="col-md-4 col-md-8-offset">
+          <p>Already have an account, then login here</p> 
+        </div>
+    
+        <div class="col-md-4 col-md-8-offset">
+          <label for="username">User name:</label> 
+        </div>
+        <div class="col-md-4 coSearchFormCol-md-8-offset">
+          <input type="text" class="form-control" id="username" name="username" formControlName="username"/>
+        </div>
+        <div class="col-md-4 col-md-8-offset">
+          <label for="password">Password:</label> 
+        </div>
+        <div class="col-md-4 col-md-8-offset">
+          <input type="password" class="form-control" id="password" name="password" formControlName="password"/>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-sm-6-offset">
+          <a href="/search">
+             <button type="default" class="btn btn-primary" >Let's Move !</button>
+          </a>
+        </div>
+     </div>
+
+     <em>
+        <h3 class="color:navy text-center">Safety, Efficiency and Protection of Assets is what drives us!</h3>
+     </em>
+
+
+<p>To be removed when routing fully operational.</p>
+<ul class="nav nav-pills">
+  <li class="active"><a href="/login">Login</a></li>
+  <li><a href="search">Search/Home</a></li>
+  <li><a href="vehicle">Vehicle</a></li>
+  <li><a href="area">Area</a></li>
+</ul>
+
+<!--  TODO Display error messages consistently 
+  <div class="alert alert-danger" ng-show="error">
+     There was a problem logging in. Please try again.
+  </div>
+-->
+</div>

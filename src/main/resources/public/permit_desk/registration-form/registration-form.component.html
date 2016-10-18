@@ -1,0 +1,231 @@
+<!---
+First crack at a AngularJS single-page application form.
+
+I've built the "self-service" application as a stand-alone application  mainly because it's public facing and user does 
+not need to be authenticated (however not sure if this is true for REST services so may need to somehow secure these services).
+
+I attempted template driven design (as per all the basic tutorials) but could get app to reference variables/attributes from other
+components (refer review page). Tried to use model-driven design to overcome the issue but this also failed.  Have now put all HTML 
+into one file which seems to work, but would be much prefer to split into several compnents.
+
+<!-- TODO : Learn how to align, fill spaces/elements etc. -->
+
+
+<div [hidden]="submitted">
+
+<form *ngIf="active" (ngSubmit)="onSubmit(selfRegistrationForm.value)" [formGroup]="selfRegistrationForm" novalidate>
+  <div class="container-fluid">
+    <h1>AHHO Registration</h1> 
+
+    <p-tabView>
+
+  	<p-tabPanel header="Business Identity"> 
+	  <div formGroupName="businessIdentity">
+            <div class="row">
+               <div class="col-md-6">
+                 <label for="businessName">Business Name</label>
+                 <input type="text" class="form-control" id="businessName" formControlName="businessName" />
+               </div>
+               <div class="col-md-6">
+                  <validation-messages [control]="selfRegistrationForm.controls.businessIdentity.controls.businessName" ></validation-messages>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-md-6">
+                  <label for="tradingName">Trading Name</label>
+                  <input type="text" class="form-control" id="tradingName" formControlName="tradingName" />
+               </div>
+               <div class="col-md-6">
+                  <validation-messages [control]="selfRegistrationForm.controls.businessIdentity.controls.tradingName" ></validation-messages>
+               </div>
+           </div>
+
+           <div class="row">
+               <div class="col-md-6">
+                 <label for="abn">ABN</label>
+                 <input type="text" class="form-control" id="abn" formControlName="abn">
+               </div>
+               <div class="col-md-6">
+                  <validation-messages [control]="selfRegistrationForm.controls.businessIdentity.controls.abn" ></validation-messages>
+               </div>
+          </div>
+ 
+          <contact-component [contactGroup]="selfRegistrationForm.controls.businessIdentity.controls.contact"></contact-component> 
+
+          <div class="row">
+               <div class="col-md-8">
+                  <label for="afterHoursPhone">After Hours</label>
+                  <input type="text" class="form-control" id="afterHoursPhone" formControlName="afterHoursPhone" >
+               </div>
+               <div class="col-md-4">
+                  <validation-messages [control]="selfRegistrationForm.controls.businessIdentity.controls.afterHoursPhone" ></validation-messages>
+               </div>
+           </div>
+          </div>
+	</p-tabPanel>
+
+        <p-tabPanel header="Business Address">
+              <address-component [addressGroup]="selfRegistrationForm.controls.businessAddress"></address-component>
+        </p-tabPanel>
+
+        <p-tabPanel header="Postal Address">
+            <p><label>Same As Business Address :</label> 
+            <p-checkbox binary="true" formControlName="sameAsBusinessAddress"></p-checkbox></p>
+            <div [hidden]="selfRegistrationForm.controls.sameAsBusinessAddress.value">  
+               <address-component [addressGroup]="selfRegistrationForm.controls.postalAddress"></address-component>
+            </div>
+       </p-tabPanel>
+ 
+       <p-tabPanel header="Proprietor/Delegate">
+           <contact-component [contactGroup]="selfRegistrationForm.controls.delegate.controls.contact"></contact-component>
+           <eoi-component [eoiGroup]="selfRegistrationForm.controls.delegate.controls.eoi"></eoi-component> 
+       </p-tabPanel>
+
+       <p-tabPanel header="Administrator">
+           <user-component [userGroup]="selfRegistrationForm.controls.administrator.controls.user"></user-component>
+    	   <eoi-component [eoiGroup]="selfRegistrationForm.controls.administrator.controls.eoi"></eoi-component>
+       </p-tabPanel>
+
+	<p-tabPanel header="Notes">
+            <h4>Please enter any extra information below</h4>
+            <textarea type="textarea" rows="10" cols="100" id="notes" formControlName="notes"></textarea>
+	</p-tabPanel>
+
+	<p-tabPanel header="Attachments">
+	    <p-growl [value]="msgs"></p-growl>
+	    <p-fileUpload name="uploadedFiles[]" url="http://localhost:3000/upload" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*" maxFileSize="1000000">
+		<template pTemplate type="content">
+		    <ul *ngIf="uploadedFiles.length">
+	               <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+	           </ul>
+		</template>        
+	    </p-fileUpload>
+	</p-tabPanel>
+
+	<p-tabPanel header="Review">
+          <p-panel header="Information Summary">
+             <div class="row">
+               <div class="col-md-2"></div>
+               <div class="col-md-4">Business Identity</div>
+               <div class="col-md-2">
+                   <div [hidden]="!selfRegistrationForm.controls.businessIdentity.valid">
+                       <button type="button" class="btn btn-sm btn-success">
+                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                       </button>
+                   </div>
+                   <div [hidden]="selfRegistrationForm.controls.businessIdentity.valid">
+                        <button type="button" class="btn btn-sm btn-danger">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button> 
+                   </div>
+               </div>
+            </div>
+
+
+            <div class="row">
+               <div class="col-md-2"></div>
+               <div class="col-md-4">Business Address</div>
+               <div class="col-md-2">
+                    <div [hidden]="!selfRegistrationForm.controls.businessAddress.valid">
+                        <button type="button" class="btn btn-sm btn-success">
+                          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div [hidden]="selfRegistrationForm.controls.businessAddress.valid">
+                        <button type="button" class="btn btn-sm btn-danger">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button> 
+                    </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-2"></div>
+               <div class="col-md-4">Postal Address </div>
+               <div class="col-md-2">
+                    <div [hidden]="!selfRegistrationForm.controls.postalAddress.valid">
+                        <button type="button" class="btn btn-sm btn-success">
+                          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div [hidden]="selfRegistrationForm.controls.postalAddress.valid">
+                        <button type="button" class="btn btn-sm btn-danger">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button> 
+                    </div>
+               </div>
+            </div>
+
+
+            <div class="row">
+               <div class="col-md-2"></div>
+               <div class="col-md-4">Proprietor / Delegate</div>
+               <div class="col-md-2">
+                    <div [hidden]="!selfRegistrationForm.controls.delegate.valid">
+                        <button type="button" class="btn btn-sm btn-success">
+                          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div [hidden]="selfRegistrationForm.controls.delegate.valid">
+                        <button type="button" class="btn btn-sm btn-danger">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button> 
+                    </div>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-md-2"></div>
+               <div class="col-md-4">Administrator</div>
+               <div class="col-md-2">
+                    <div [hidden]="!selfRegistrationForm.controls.administrator.valid">
+                        <button type="button" class="btn btn-sm btn-success">
+                           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div [hidden]="selfRegistrationForm.controls.administrator.valid">
+                        <button type="button" class="btn btn-sm btn-danger">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button> 
+                    </div>
+               </div>
+            </div>
+            </p-panel>
+
+            <div class="row">
+               <div class="col-md-12"></div>
+            </div>
+
+            <p-panel header="Terms and Conditions">
+               <div class="row">
+                  <div class="col-md-12">                     <p>By using our website you agree to be legally bound by these terms, which shall take effect immediately on your first use of our website. If you do not agree to be legally bound by all the following terms you will not be provided with access to the "Overload - Heavy Vehicle Permit Management" web-site.</p>
+                     <p></p>
+                     <p>For a full disclosure of our terms and conditions please refer to the Department of Transport and Main roads web-site (<a href="http://www.tmr.qld.gov.au/termsandconditions" target="_blank">here</a>)</p>
+                        <p><p-checkbox binary="true" [formControl]="selfRegistrationForm.controls.termsAndConditions"></p-checkbox><label>I agree</label></p>
+                  </div>
+               </div>
+            </p-panel>
+   	</p-tabPanel>
+
+    </p-tabView>
+       <button type="submit" class="btn btn-primary" [disabled]="!selfRegistrationForm.valid" color="teal">Submit</button>
+  </div>
+</form>
+</div>
+
+  <div [hidden]="!submitted"> 
+     <div class="centre" width="50%">
+        <h1>AHHO Registration</h1>
+        <p>You're application #{{application_no}} has been submitted and will be processed in a timely manner. 
+Should you require further information regarding this application please contact the Department of Transport
+ and Mains Road. </p>
+
+        <h2>Contact Information</h2>
+        <p>Phone : (XX) XXXX XXXX</p>
+        <p>EMail : hvropo@tmr.qld.gov.au </p>
+
+        <p>To assist us with your inquiry please quote the following application reference # </p> {{application_no}}
+     </div>
+  </div> 
+
+

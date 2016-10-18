@@ -1,0 +1,46 @@
+   <div [formGroup]="dimensionGroup">  
+          <div class="row">
+             <div class="col-md-6">
+               <label for="height">Height</label>
+               <input type="number" class="form-control" id="height" formControlName="height">
+               <label for="width">Width</label>
+               <input type="number" class="form-control" id="width" formControlName="width">
+               <label for="length">Length</label>
+               <input type="number" class="form-control" id="length" formControlName="length">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="dimensionGroup.controls.height" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-2">
+               <label for="frontOverhang">Front Overhang</label>
+               <input type="text" class="form-control" id="frontOverhang" formControlName="frontOverhang">
+             </div>
+             <div class="col-md-2">
+               <label for="rearOverhang">Rear Overhang</label>
+               <input type="text" class="form-control" id="rearOverhang" formControlName="rearOverhang">
+             </div>
+             <div class="col-md-8">
+                  <validation-messages [control]="dimensionGroup.controls.frontOverhang" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="frontProjection">Front Projection</label>
+               <input type="number" class="form-control" id="frontProjection" formControlName="frontProjection">
+               <label for="rearProjection">Rear Projection</label>
+               <input type="number" class="form-control" id="rearProjection" formControlName="rearProjection">
+               <label for="lhsProjection">LHS Projection</label>
+               <input type="number" class="form-control" id="lhsProjection" formControlName="lhsProjection">
+               <label for="ehsProjection">RHS Projection</label>
+               <input type="number" class="form-control" id="rhsProjection" formControlName="rhsProjection">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="dimensionGroup.controls.frontProjection" ></validation-messages>
+             </div>
+          </div>
+     </div>
+

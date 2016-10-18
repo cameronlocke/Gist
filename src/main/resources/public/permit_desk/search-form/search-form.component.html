@@ -1,0 +1,241 @@
+<page-title title="Overload - Application Manager"></page-title>
+<form *ngIf="active" (ngSubmit)="onSubmit(searchForm.value)" [formGroup]="searchForm" novalidate>
+    <p-panel [toggleable]="true" header="Search Criteria">
+      <p-tabView>
+  	  <p-tabPanel header="Application">
+          <div class="row">
+             <div class="col-md-4">
+                <label for="statusId">Status</label>
+                <select name="statusId" type="number" id="status" class="form-control" [formControl]="searchForm.controls.statusId">
+                  <option *ngFor="let status of statuses" value="{{status.key}}" > {{ status.value }}</option>
+                </select>
+             </div>
+             <div class="col-md-8">
+                  <validation-messages [control]="searchForm.controls.statusId" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="applicationType">Application Type</label>
+                <select name="applicationType" type="number" id="applicationType" class="form-control" [formControl]="searchForm.controls.applicationType">
+                  <option *ngFor="let applicationType of applicationTypes" value="{{applicationType.key}}" > {{ applicationType.value }}</option>
+                </select>
+             </div>
+             <div class="col-md-8">
+                  <validation-messages [control]="searchForm.controls.applicationType" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="permitNo">Permit #</label>
+               <input type="text" class="form-control" id="permitNo" [formControl]="searchForm.controls.permitNo">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.permitNo" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="authorisedFrom">Authorised From</label>
+               <input type="date" class="form-control" id="authorisedFrom" [formControl]="searchForm.controls.authorisedFrom">
+             </div>
+             <div class="col-md-4">
+                <label for="authorisedTo">To</label>
+               <input type="date" class="form-control" id="authorisedTo" [formControl]="searchForm.controls.authorisedTo">
+             </div>
+             <div class="col-md-4">
+                  <validation-messages [control]="searchForm.controls.authorisedFrom" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+               <button pButton type="text" [style]="{'float':'right'}" icon="fa-refresh" (click)="onReset()"></button>
+               <button pButton type="submit" [style]="{'float':'right'}" icon="fa-search" iconPos="right" label="Search"></button>
+            </div>
+          </div>
+
+	</p-tabPanel>
+  	<p-tabPanel header="Dates">
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="submittedFrom">Submitted From</label>
+               <input type="date" class="form-control" id="submittedFrom" [formControl]="searchForm.controls.submittedFrom">
+             </div>
+             <div class="col-md-4">
+                <label for="submittedTo">To</label>
+               <input type="date" class="form-control" id="submittedTo" [formControl]="searchForm.controls.submittedTo">
+             </div>
+             <div class="col-md-4">
+                  <validation-messages [control]="searchForm.controls.submittedFrom" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="lastActionFrom">Last Action From</label>
+               <input type="date" class="form-control" id="lastActionFrom" [formControl]="searchForm.controls.lastActionFrom">
+             </div>
+             <div class="col-md-4">
+                <label for="lastActionTo">To</label>
+               <input type="date" class="form-control" id="lastActionTo" [formControl]="searchForm.controls.lastActionTo">
+             </div>
+             <div class="col-md-4">
+                  <validation-messages [control]="searchForm.controls.lastActionFrom" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="decisionFrom">Decision From</label>
+               <input type="date" class="form-control" id="decisionFrom" [formControl]="searchForm.controls.decisionFrom">
+             </div>
+             <div class="col-md-4">
+                <label for="decisionTo">To</label>
+               <input type="date" class="form-control" id="decisionTo" [formControl]="searchForm.controls.decisionTo">
+             </div>
+             <div class="col-md-4">
+                  <validation-messages [control]="searchForm.controls.decisionFrom" ></validation-messages>
+             </div>
+          </div>
+
+	  </p-tabPanel>
+
+
+	<!-- Vehicle -->
+      <p-tabPanel header="Vehicle">
+
+          <div class="row">
+             <div class="col-md-4">
+                <label for="vehicleType">Vehicle Type</label>
+                <select name="vehicleType" type="number" id="vehicleType" class="form-control" [formControl]="searchForm.controls.vehicleType">
+                  <option *ngFor="let vehicleType of vehicleTypes" value="{{vehicleType.key}}" > {{ vehicleType.value }}</option>
+                </select>
+             </div>
+             <div class="col-md-8">
+                  <validation-messages [control]="searchForm.controls.vehicleType" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-4">
+               <label for="plateNo">Plate #</label>
+               <input type="text" class="form-control" id="plateNo" [formControl]="searchForm.controls.plateNo">
+             </div>
+             <div class="col-md-2">
+                <label for="plateState">State</label>
+                <select name="plateState" type="number" id=plateState class="form-control" [formControl]="searchForm.controls.plateState">
+                  <option *ngFor="let state of states" value="{{state.key}}" > {{ state.value }}</option>
+                </select>
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.plateNo" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="vin">VIN</label>
+               <input type="text" class="form-control" id="vin" [formControl]="searchForm.controls.vin">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.vin" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="engineNo">Engine #</label>
+               <input type="text" class="form-control" id="engineNo" [formControl]="searchForm.controls.engineNo">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.engineNo" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="chassisNo">Chassis #</label>
+               <input type="text" class="form-control" id="chassisNo" [formControl]="searchForm.controls.chassisNo">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.chassisNo" ></validation-messages>
+             </div>
+          </div>
+
+	  </p-tabPanel>
+
+	<!-- Travel / Trip / Geometry -->
+
+      <p-tabPanel header="Travel">
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="designatedRoute">Designated Route</label>
+               <input type="text" class="form-control" id="designatedRoute" [formControl]="searchForm.controls.designatedRoute">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.designatedRoute" ></validation-messages>
+             </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-6">
+               <label for="areaOfOperation">Designated Route</label>
+               <input type="text" class="form-control" id="areaOfOperation" [formControl]="searchForm.controls.areaOfOperation">
+             </div>
+             <div class="col-md-6">
+                  <validation-messages [control]="searchForm.controls.areaOfOperation" ></validation-messages>
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-md-6">
+               <label for="mapGeometry">Map Geometry</label>
+               <input type="text" class="form-control" id="mapGeometry" [formControl]="searchForm.controls.mapGeometry">
+             </div>
+             <div class="col-md-6">
+                 <validation-messages [control]="searchForm.controls.mapGeometry" ></validation-messages>
+            </div>
+          </div>
+        </p-tabPanel>
+     </p-tabView>
+   </p-panel>
+   <p-panel header="Results" toggleable="true">
+      <p-dataTable [value]="searchResults" selectionMode="single" resizableColumns="true" columnResizeMode="expand" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+     	<p-column field="applicationId" header="Id">
+	   <template let-col let-result="rowData" pTemplate type="body">
+	        <a href="{{ result[col.field] }}" > {{ result.applicationId }} </a>
+           </template>
+        </p-column>
+		<p-column field="applicationType" header="Type"></p-column>
+		<p-column field="description" header="Description"></p-column>
+		<p-column field="organisation" header="Hauler"></p-column>
+		<p-column field="effectiveFrom" header="Permit Start"></p-column>
+		<p-column field="effectiveTo" header="Permit Finish"></p-column>
+		<p-column field="status" header="status"></p-column>
+		<p-column field="permitNo" header="Permit #"></p-column>
+		<p-column field="submissionDate" header="Submitted"></p-column>
+		<p-column field="decisionDate" header="Decision"></p-column>
+		<p-column field="lastAction" header="Last Action"></p-column>
+      </p-dataTable>
+   </p-panel>
+
+<!--
+<p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false">
+   <span>Application ID : {{ selectedResult.applicationId}}</span>
+   <span>Description : {{ selectedResult.description}}</span>
+</p-overlayPanel>
+-->
+
+<p-messages [value]="msgs"></p-messages>
+
+<p-growl [value]="msgs" sticky="true"></p-growl>
+
+</form>
+
+

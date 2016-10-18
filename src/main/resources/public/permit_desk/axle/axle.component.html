@@ -1,0 +1,28 @@
+<div [formGroup]="axlegroup">
+	<div class="col-md-1">
+		<label># of Tyres</label>
+		<input type="text" formControlName="noOfTyres">
+	</div>
+	<div class="col-md-1">
+		<label>Typre Width</label>
+		<input type="text" formControlName="tyreWidth">
+	</div>
+	<div class="col-md-1">
+		<label>GCW</label>
+		<input type="text" formControlName="groundContactWidth">
+	</div>
+	<div class="col-md-1">
+		<label>Spacing</label>
+		<input type="text" formControlName="groundContactLength">
+	</div>
+	<div class="col-md-2">
+		<label>Mass</label>
+		<input type="text" formControlName="mass">
+	</div>
+	<div class="col-md-6">
+		<validation-messages [control]="axlegroup.controls.noOfTyres" ></validation-messages>
+	</div>
+</div>
+
+
+

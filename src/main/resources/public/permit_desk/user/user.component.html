@@ -1,0 +1,13 @@
+   <div [formGroup]="userGroup">
+          <div class="row">
+             <div class="col-md-8">
+               <label for="Username">User Name</label>
+               <input type="text" class="form-control" id="userName" formControlName="userName">
+             </div>
+             <div class="col-md-4">
+                 <validation-messages [control]="userGroup.controls.userName" ></validation-messages>
+             </div>
+          </div>
+          <contact-component [contactGroup]="userGroup.controls.contact"></contact-component>
+   </div>
+
