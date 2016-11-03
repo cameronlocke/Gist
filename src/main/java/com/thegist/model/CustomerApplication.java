@@ -14,7 +14,7 @@ import com.thegist.domain.Application;
 import com.thegist.domain.ApplicationCustomer;
 import com.thegist.domain.Contact;
 import com.thegist.domain.User;
-import com.thegist.utils.Error;
+import com.thegist.utils.messages.Error;
 
 
 public class CustomerApplication {

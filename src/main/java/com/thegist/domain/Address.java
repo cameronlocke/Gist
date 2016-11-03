@@ -11,7 +11,7 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.TypeDef;
 
-import com.thegist.utils.HstoreUserType;
+import com.thegist.utils.hstore.HstoreUserType;
 import com.vividsolutions.jts.geom.Geometry;
 
 @Entity

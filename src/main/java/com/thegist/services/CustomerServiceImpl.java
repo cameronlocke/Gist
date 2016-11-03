@@ -10,7 +10,7 @@ import com.thegist.domain.Organisation;
 import com.thegist.domain.OrganisationRepository;
 import com.thegist.domain.UserRepository;
 import com.thegist.model.CustomerApplication;
-import com.thegist.utils.Error;
+import com.thegist.utils.messages.Error;
 
 import java.util.ArrayList;
 import java.util.Calendar;

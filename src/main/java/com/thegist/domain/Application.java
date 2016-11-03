@@ -18,7 +18,7 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.thegist.utils.HstoreUserType;
+import com.thegist.utils.hstore.HstoreUserType;
 
 import org.hibernate.annotations.TypeDef;
 
