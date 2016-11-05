@@ -78,7 +78,7 @@ export class ValidationService {
     }
 
 
-    static passsword(control: FormControl) { 
+    static password(control: FormControl) { 
 
     // Password rules determined by the organisation.
     // Min length is habdle by minLength validator but  
