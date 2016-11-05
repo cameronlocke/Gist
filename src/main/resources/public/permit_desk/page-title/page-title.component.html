@@ -1,6 +1,30 @@
-  <div>
-      <button p-button type="text" [style]="{'float':'right'}" label="Admin" icon="fa-cog" (click)="adminmenu.toggle($event)"></button>
-      <button p-button type="text" [style]="{'float':'right'}" label="Profile" icon="fa-list" (click)="profilemenu.toggle($event)"></button>
+<nav class="nav navbar-default navbar-static">
+  <div class="nav nav-header">
+      <a href="search">
+        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+      </a>
+      <span>{{title}}</span>
+
+      <a id="admin" data-target="#" class="pull-right" data-toggle="dropdown" role="button" aria-label="Administration">
+        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+        <span class="caret"></span>
+      </a> 
+      <ul class="dropdown-menu" aria-labelledby="admin">
+         <li><a href="#">Action</a></li>
+         <li><a href="#">Another action</a></li>
+         <li><a href="#">Something else here</a></li>
+         <li role="separator" class="divider"></li>
+         <li><a href="#">Separated link</a></li>
+      </ul>
+      <a id="user" data-target="#" class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-label="Administration">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+      </a> 
+      <ul class="dropdown-menu" aria-labelledby="user">
+         <li><a href="#">Action</a></li>
+         <li><a href="#">Another action</a></li>
+         <li><a href="#">Something else here</a></li>
+         <li role="separator" class="divider"></li>
+         <li><a href="#">Separated link</a></li>
+      </ul>
   </div>
-  
- 
+</nav>
