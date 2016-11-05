@@ -1,0 +1,36 @@
+<form *ngIf="active" [formGroup]="vehicleCombination" (ngSubmit)="onSubmit(vehicleCombination.value)" novalidate>
+    <page-title title="The Yard"></page-title>
+<div class="ui-grid ui-grid-pad ui-grid-responsive">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-6 ui-widget-content" style="border-right:0 none">
+            <h4>Vehicle Fleet</h4>
+            <ul style="margin:0;padding:0">
+                <li *ngFor="let vehicle of availableVehicles" class="ui-state-default ui-helper-clearfix"
+ pDraggable="Vehicles" (onDragStart)="dragStart($event,vehicle)" (onDragEnd)="dragEnd($event)">
+                    <img src="resources/images/vehicle/unknown.png" height="10px" width="20px"style="float:left" draggable="false">
+                    <i class="fa fa-arrows fa-1x" style="float:right"></i>
+                    <div style="margin:0 0 0 2px;float:left">{{vehicle.plate}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="ui-grid-col-6 ui-widget-content" pDroppable="Vehicles" (onDrop)="drop($event)"
+                [ngClass]="{'ui-state-highlight':draggedVehicle}">
+            <h4>Selected Heavy Vehicle Combination </h4>
+            <p-dataTable [value]="selectedVehicles">
+                <p-column field="plate" header="Plate#"></p-column>
+                <p-column field="stateId" header="State"></p-column>
+                <p-column field="vin" header="Vin"></p-column>
+                <p-column field="engineNo" header="Engine"></p-column>
+                <p-column field="chassisNo" header="Chassis"></p-column>
+<!---                <p-column field="year" header="Year"></p-column>
+                <p-column field="brand" header="Brand"></p-column>
+                <p-column field="color" header="Color"></p-column> -->
+            </p-dataTable>
+        </div>
+    </div>
+    <div class="ui-grid-row">
+       Enter Dimensions here
+    </div>
+</div>
+
+</form>
