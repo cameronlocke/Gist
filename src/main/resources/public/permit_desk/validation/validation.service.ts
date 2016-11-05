@@ -81,9 +81,9 @@ export class ValidationService {
     static password(control: FormControl) { 
 
     // Password rules determined by the organisation.
-    // Min length is habdle by minLength validator but  
-    // may also need Upper/lower case, special characeter, AT one number and one letter etc
-    // or even havent uused in last 10 reset or last 6 months (service call)
+    // Min length is handle by minLength validator but  
+    // may also need Upper/lower case, special character, AT one number and one letter etc
+    // or even haven't used in last 10 reset or last 6 months (service call)
 
         if (control.value.length <= 6 ) {
             return { "invalidPassword": true };
