@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {MenuModule,MenuItem, Button} from 'primeng/primeng';
-
+import { MenuModule,MenuItem, Button} from 'primeng/primeng';
 
 @Component ({
   moduleId: module.id,
@@ -12,6 +11,14 @@ export class PageTitleComponent implements OnInit {
 
    @Input()
    public title : string;
+
+   @Input()
+   public access_level : string;
+   
+   
+   public disabled:boolean = false;
+   public status:{isopen:boolean} = {isopen: false};
+   
 
    private profileItems: MenuItem[];
 
@@ -29,10 +36,9 @@ export class PageTitleComponent implements OnInit {
 
         this.adminItems = [
                     {label: 'User Management'},
-                    
                     {label: 'Conditions'},
                     {label: 'Condition Triggers'},
-                    {label: 'About'},
+                    {label: 'About'}
                 ];
     }
    
